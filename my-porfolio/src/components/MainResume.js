@@ -42,7 +42,7 @@ const accomplishments = [
 	  "Using Highcharts with Next JS to analyze user csv transaction data and create budgeting strategies",
 	],
 	image: "/budgeting-project.png",
-	link: "https://github.com/Ancient-Roman/budgeting-dashboard"
+	link: "https://budgeting-dashboard-lzl15dcyd-ancient-romans-projects.vercel.app"
   },
   {
 	summary: "Tactical Strategy Video Game Project",
