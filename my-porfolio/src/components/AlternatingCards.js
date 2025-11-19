@@ -69,7 +69,7 @@ const ClickableImage = ({card}) => {
 
   return (
     <>
-      <a href={card.link}>
+      <a href={card.link} target="_blank" rel="noopener noreferrer">
         <Image
           src={card.image}
           alt="Icon"

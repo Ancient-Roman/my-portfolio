@@ -41,7 +41,7 @@ const accomplishments = [
 	items: [
 	  "Using Highcharts with Next JS to analyze user csv transaction data and create budgeting strategies",
 	],
-	image: "/budgeting-project.png",
+	image: "/budgeting-project-new.jpg",
 	link: "https://budgeting-dashboard-lzl15dcyd-ancient-romans-projects.vercel.app"
   },
   {
