@@ -37,7 +37,7 @@ function PageHeader() {
 			className="absolute top-0 inset-x-0 bg-transparent text-white py-4 px-6 shadow-xl z-50 transition-opacity duration-500 ease-in-out"
 		>
 			<header className="flex items-center justify-between">
-				<h1 className="md:pl-8 text-xl text-center sm:text-2xl md:text-3xl font-serif min-w-0 truncate">Drew Bowman </h1>
+				<h1 className="md:pl-8 text-xl text-center sm:text-2xl md:text-3xl font-serif min-w-0 whitespace-nowrap">Drew Bowman </h1>
 
 				{/* Desktop Nav */}
 				<nav className="hidden md:flex flex-nowrap min-w-0 justify-center items-center w-full">
