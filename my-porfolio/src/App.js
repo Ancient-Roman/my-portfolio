@@ -1,7 +1,3 @@
-import './App.css';
-import 'boxicons/css/boxicons.min.css';
-
-// components
 import PageHeader from './components/PageHeader';
 import ImageSection from './components/ImageSection';
 import MainResume from './components/MainResume';
