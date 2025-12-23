@@ -1,9 +1,11 @@
 import * as React from "react";
 import Image from "./Image";
+import ContactModal from "./ContactModal";
 
 function PageHeader() {
 	const bannerRef = React.useRef(null);
 	const lastScroll = React.useRef(0);
+	const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
 
 	/** Handle banner fade in and out */
 	React.useEffect(() => {
@@ -28,6 +30,7 @@ function PageHeader() {
 	}, []);
 
 	return (
+		<>
 		<section 
 			ref={bannerRef} 
 			id="page-header" 
@@ -54,11 +57,19 @@ function PageHeader() {
 						href="https://www.linkedin.com/in/douglas-bowman-0b909a197/" 
 						imageSrc={"/linkedin-svgrepo-com-white.svg"} 
 					/>
-					<IconLink href="mailto:bowmangolf00@gmail.com" imageSrc={"/email-8-svgrepo-com-white.svg"}/>
+					<button
+						onClick={() => setIsContactModalOpen(true)}
+						className="w-8 h-8 md:w-12 md:h-12 transition duration-200 hover:brightness-75 p-0 bg-transparent border-0 cursor-pointer"
+						aria-label="Open contact form"
+					>
+						<Image src={"/email-8-svgrepo-com-white.svg"} alt="contact" className="w-8 h-8 md:w-12 md:h-12" />
+					</button>
 
 				</div>
 			</header>
 		</section>
+		<ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+		</>
 	);
 }
 
