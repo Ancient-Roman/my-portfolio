@@ -30,17 +30,17 @@ function PageHeader() {
 	}, []);
 
 	return (
-		<>
+		<div className="relative">
 		<section 
 			ref={bannerRef} 
 			id="page-header" 
-			className="fixed top-0 left-0 w-full bg-transparent text-white text-center py-4 px-6 shadow-xl z-50 transition-opacity duration-500 ease-in-out"
+			className="absolute top-0 inset-x-0 bg-transparent text-white py-4 px-6 shadow-xl z-50 transition-opacity duration-500 ease-in-out"
 		>
-			<header className="flex flex-row items-center w-full justify-between">
-				<h1 className="md:pl-8 text-xl sm:text-2xl md:text-3xl whitespace-nowrap font-serif">Drew Bowman </h1>
+			<header className="flex items-center justify-between">
+				<h1 className="md:pl-8 text-xl text-center sm:text-2xl md:text-3xl font-serif min-w-0 truncate">Drew Bowman </h1>
 
 				{/* Desktop Nav */}
-				<nav className="hidden md:flex flex-nowrap justify-center items-center w-full">
+				<nav className="hidden md:flex flex-nowrap min-w-0 justify-center items-center w-full">
 					<HeaderLink href="#education">Education</HeaderLink>
 					<HeaderLink href="#experience">Experience</HeaderLink>
 					<HeaderLink href="#projects">Projects</HeaderLink>
@@ -48,7 +48,7 @@ function PageHeader() {
 					<HeaderLink href="#honors-and-awards">Honors and Awards</HeaderLink>
 				</nav>
 
-				<div className="flex flex-row items-center justify-end gap-2 md:gap-4">
+				<div className="flex flex-row min-w-0 items-center justify-end gap-2 md:gap-4">
 					<IconLink 
 						href="https://github.com/Ancient-Roman" 
 						imageSrc={"/github-mark-white.svg"} 
@@ -69,7 +69,7 @@ function PageHeader() {
 			</header>
 		</section>
 		<ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-		</>
+		</div>
 	);
 }
 
