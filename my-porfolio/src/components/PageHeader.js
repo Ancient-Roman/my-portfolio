@@ -30,46 +30,46 @@ function PageHeader() {
 	}, []);
 
 	return (
-		<div className="relative">
-		<section 
-			ref={bannerRef} 
-			id="page-header" 
-			className="absolute top-0 inset-x-0 bg-transparent text-white py-4 px-6 shadow-xl z-50 transition-opacity duration-500 ease-in-out"
-		>
-			<header className="flex items-center justify-between">
-				<h1 className="md:pl-8 text-xl text-center sm:text-2xl md:text-3xl font-serif min-w-0 whitespace-nowrap">Drew Bowman </h1>
+		<>
+			<section 
+				ref={bannerRef} 
+				id="page-header" 
+				className="fixed top-0 inset-x-0 bg-transparent text-white py-4 px-6 shadow-xl z-50 transition-opacity duration-500 ease-in-out"
+			>
+				<header className="flex items-center justify-between">
+					<h1 className="md:pl-8 text-xl text-center sm:text-2xl md:text-3xl font-serif min-w-0 whitespace-nowrap">Drew Bowman </h1>
 
-				{/* Desktop Nav */}
-				<nav className="hidden md:flex flex-nowrap min-w-0 justify-center items-center w-full">
-					<HeaderLink href="#education">Education</HeaderLink>
-					<HeaderLink href="#experience">Experience</HeaderLink>
-					<HeaderLink href="#projects">Projects</HeaderLink>
-					<HeaderLink href="#skills">Skills</HeaderLink>
-					<HeaderLink href="#honors-and-awards">Honors and Awards</HeaderLink>
-				</nav>
+					{/* Desktop Nav */}
+					<nav className="hidden md:flex flex-nowrap min-w-0 justify-center items-center w-full">
+						<HeaderLink href="#education">Education</HeaderLink>
+						<HeaderLink href="#experience">Experience</HeaderLink>
+						<HeaderLink href="#projects">Projects</HeaderLink>
+						<HeaderLink href="#skills">Skills</HeaderLink>
+						<HeaderLink href="#honors-and-awards">Honors and Awards</HeaderLink>
+					</nav>
 
-				<div className="flex flex-row min-w-0 items-center justify-end gap-2 md:gap-4">
-					<IconLink 
-						href="https://github.com/Ancient-Roman" 
-						imageSrc={"/github-mark-white.svg"} 
-					/>
-					<IconLink 
-						href="https://www.linkedin.com/in/douglas-bowman-0b909a197/" 
-						imageSrc={"/linkedin-svgrepo-com-white.svg"} 
-					/>
-					<button
-						onClick={() => setIsContactModalOpen(true)}
-						className="w-8 h-8 md:w-12 md:h-12 transition duration-200 hover:brightness-75 p-0 bg-transparent border-0 cursor-pointer"
-						aria-label="Open contact form"
-					>
-						<Image src={"/email-8-svgrepo-com-white.svg"} alt="contact" className="w-8 h-8 md:w-12 md:h-12" />
-					</button>
+					<div className="flex flex-row min-w-0 items-center justify-end gap-2 md:gap-4">
+						<IconLink 
+							href="https://github.com/Ancient-Roman" 
+							imageSrc={"/github-mark-white.svg"} 
+						/>
+						<IconLink 
+							href="https://www.linkedin.com/in/douglas-bowman-0b909a197/" 
+							imageSrc={"/linkedin-svgrepo-com-white.svg"} 
+						/>
+						<button
+							onClick={() => setIsContactModalOpen(true)}
+							className="w-8 h-8 md:w-12 md:h-12 transition duration-200 hover:brightness-75 p-0 bg-transparent border-0 cursor-pointer"
+							aria-label="Open contact form"
+						>
+							<Image src={"/email-8-svgrepo-com-white.svg"} alt="contact" className="w-8 h-8 md:w-12 md:h-12" />
+						</button>
 
-				</div>
-			</header>
-		</section>
-		<ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-		</div>
+					</div>
+				</header>
+			</section>
+			<ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+		</>
 	);
 }
 
