@@ -14,11 +14,11 @@ function PageHeader() {
 
 		  if (!bannerRef.current) return;
 	
-		  if (currentScroll <= 10) {
+		  if (currentScroll <= 100) {
 			bannerRef.current.style.opacity = '1';
 		  } else if (currentScroll > lastScroll.current) {
 			bannerRef.current.style.opacity = '0';
-		  } else if (currentScroll < lastScroll.current && currentScroll < 200) {
+		  } else if (currentScroll < lastScroll.current && currentScroll < 300) {
 			bannerRef.current.style.opacity = '1';
 		  }
 	
