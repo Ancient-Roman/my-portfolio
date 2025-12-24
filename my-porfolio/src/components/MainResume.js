@@ -69,7 +69,7 @@ const accomplishments = [
 	title: "Honors and Awards",
 	items: [
 		"Member of the Virginia Tech Honors College: January 2020 – May 2023",
-		"Published Research Paper To Creativity & Cognition Conference, which recieved an honorable mention: April 2024"
+		"Published Research Paper To Creativity & Cognition Conference, which received an honorable mention: April 2024"
 	],
 	image: "/honorable-mention-AandC.png",
 	link: "https://dl.acm.org/doi/abs/10.1145/3635636.3656195",
