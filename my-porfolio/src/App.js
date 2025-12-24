@@ -6,7 +6,7 @@ import MainResume from './components/MainResume';
 function App() {
   
   return (
-    <div className="App">
+    <div className="App relative overflow-x-hidden max-w-full">
 
       <PageHeader/>
       <ImageSection/>
