@@ -56,12 +56,14 @@ const accomplishments = [
   {
 	title: "Skills",
 	items: [
-	  "Java",
+	  "React",
+	  "Next.js",
 	  "JavaScript/TypeScript",
 	  "Python",
 	  "Swift",
-	  "C#",
+	  "C#/.NET",
 	  "SQL Server",
+	  "Java",
 	  "Unreal Engine/C++"
 	],
   },

@@ -1,33 +1,11 @@
 import * as React from "react";
 import Image from "./Image";
 import ContactModal from "./ContactModal";
+import useScrollFade from "../hooks/useScrollFade";
 
 function PageHeader() {
-	const bannerRef = React.useRef(null);
-	const lastScroll = React.useRef(0);
+	const { opacity, ref: bannerRef } = useScrollFade(100, 300);
 	const [isContactModalOpen, setIsContactModalOpen] = React.useState(false);
-
-	/** Handle banner fade in and out */
-	React.useEffect(() => {
-		const handleScroll = () => {
-		  const currentScroll = window.scrollY;
-
-		  if (!bannerRef.current) return;
-	
-		  if (currentScroll <= 100) {
-			bannerRef.current.style.opacity = '1';
-		  } else if (currentScroll > lastScroll.current) {
-			bannerRef.current.style.opacity = '0';
-		  } else if (currentScroll < lastScroll.current && currentScroll < 300) {
-			bannerRef.current.style.opacity = '1';
-		  }
-	
-		  lastScroll.current = currentScroll;
-		};
-	
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
 
 	return (
 		<>
@@ -35,6 +13,7 @@ function PageHeader() {
 				ref={bannerRef} 
 				id="page-header" 
 				className="fixed top-0 inset-x-0 bg-transparent text-white py-4 px-6 shadow-xl z-50 transition-opacity duration-500 ease-in-out"
+				style={{ opacity }}
 			>
 				<header className="flex items-center justify-between">
 					<h1 className="md:pl-8 text-xl text-center sm:text-2xl md:text-3xl font-serif min-w-0 whitespace-nowrap">Drew Bowman </h1>

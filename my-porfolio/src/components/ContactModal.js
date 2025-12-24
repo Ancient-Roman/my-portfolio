@@ -1,14 +1,48 @@
 import React from 'react';
 import emailjs from '@emailjs/browser';
+import useFormValidation from '../hooks/useFormValidation';
 
 function ContactModal({ isOpen, onClose }) {
-  const [formData, setFormData] = React.useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitStatus, setSubmitStatus] = React.useState(null); // 'success', 'error', or null
+
+  /** Contact me validation function */
+  const validate = (values) => {
+    const newErrors = {};
+    
+    if (!values.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (values.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
+    }
+
+    if (!values.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    if (!values.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (values.message.trim().length < 10) {
+      newErrors.message = 'Message must be at least 10 characters';
+    }
+
+    return newErrors;
+  };
+
+  const {
+    values,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    resetForm,
+    getFieldError,
+    hasFieldError,
+  } = useFormValidation(
+    { name: '', email: '', message: '' },
+    validate
+  );
 
   // Initialize EmailJS on component mount
   React.useEffect(() => {
@@ -18,31 +52,8 @@ function ContactModal({ isOpen, onClose }) {
     }
   }, []);
 
-  // Prevent scrolling when modal is open
-  React.useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
+  // Handle form submission
+  const onSubmit = async (formValues) => {
     try {
       const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
       const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
@@ -54,15 +65,15 @@ function ContactModal({ isOpen, onClose }) {
 
       // Send email using EmailJS
       const response = await emailjs.send(serviceId, templateId, {
-        from_name: formData.name,
-        from_email: formData.email,
+        from_name: formValues.name,
+        from_email: formValues.email,
         to_email: recipientEmail,
-        message: formData.message,
+        message: formValues.message,
       });
 
       if (response.status === 200) {
         setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
+        resetForm();
         setTimeout(() => {
           onClose();
           setSubmitStatus(null);
@@ -73,8 +84,6 @@ function ContactModal({ isOpen, onClose }) {
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -125,7 +134,7 @@ function ContactModal({ isOpen, onClose }) {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Name Field */}
           <div>
             <label
@@ -133,18 +142,23 @@ function ContactModal({ isOpen, onClose }) {
               className="block text-sm font-medium mb-1"
               style={{ color: 'rgb(56, 87, 35)' }}
             >
-              Name
+              Name {hasFieldError('name') && <span className="text-red-600">*</span>}
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              value={formData.name}
+              value={values.name}
               onChange={handleChange}
-              required
+              onBlur={handleBlur}
               placeholder="Your name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-black placeholder-gray-500"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-colors text-black placeholder-gray-500 ${
+                hasFieldError('name') ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+              }`}
             />
+            {getFieldError('name') && (
+              <p className="text-red-600 text-sm mt-1">{getFieldError('name')}</p>
+            )}
           </div>
 
           {/* Email Field */}
@@ -154,18 +168,23 @@ function ContactModal({ isOpen, onClose }) {
               className="block text-sm font-medium mb-1"
               style={{ color: 'rgb(56, 87, 35)' }}
             >
-              Email
+              Email {hasFieldError('email') && <span className="text-red-600">*</span>}
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              value={formData.email}
+              value={values.email}
               onChange={handleChange}
-              required
+              onBlur={handleBlur}
               placeholder="your.email@example.com"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-black placeholder-gray-500"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-colors text-black placeholder-gray-500 ${
+                hasFieldError('email') ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+              }`}
             />
+            {getFieldError('email') && (
+              <p className="text-red-600 text-sm mt-1">{getFieldError('email')}</p>
+            )}
           </div>
 
           {/* Message Field */}
@@ -175,18 +194,23 @@ function ContactModal({ isOpen, onClose }) {
               className="block text-sm font-medium mb-1"
               style={{ color: 'rgb(56, 87, 35)' }}
             >
-              Message
+              Message {hasFieldError('message') && <span className="text-red-600">*</span>}
             </label>
             <textarea
               id="message"
               name="message"
-              value={formData.message}
+              value={values.message}
               onChange={handleChange}
-              required
+              onBlur={handleBlur}
               placeholder="Your message here..."
               rows="5"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none text-black placeholder-gray-500"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:border-transparent transition-colors resize-none text-black placeholder-gray-500 ${
+                hasFieldError('message') ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+              }`}
             />
+            {getFieldError('message') && (
+              <p className="text-red-600 text-sm mt-1">{getFieldError('message')}</p>
+            )}
           </div>
 
           {/* Buttons - Fixed at bottom */}
