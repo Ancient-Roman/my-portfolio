@@ -12,7 +12,7 @@ const accomplishments = [
 	  "Cumulative GPA: 3.96",
 	  "Graduated with a BS in Computer Science, Music Technology Minor",
 	],
-	image: "/vt-computer-science.png",
+	images: ["/vt-computer-science.png"],
 	link: "https://website.cs.vt.edu/Undergraduate.html",
   },
   {
@@ -24,7 +24,7 @@ const accomplishments = [
 	  "Gained full-stack and agile experience",
 	  "Mentored an intern dev in summer 2024"
 	],
-	image: "/costar-group.png",
+	images: ["/costar-group.png"],
 	link: "https://www.costargroup.com",
   },
   {
@@ -34,7 +34,7 @@ const accomplishments = [
 	  "Developed a web application using React and Openlayers API",
 	  "Gained experience with React and UI design for real-time location data",
 	],
-	image: "/offical-vorbeck-logo.png",
+	images: ["/offical-vorbeck-logo.png"],
 	link: "https://www.vorbeck.com",
   },
   {
@@ -44,17 +44,17 @@ const accomplishments = [
 	items: [
 	  "Using Highcharts with Next JS to analyze user csv transaction data and create budgeting strategies",
 	],
-	image: "/budgeting-project-new.jpg",
+	images: ["/budgeting-project-new.jpg"],
 	link: "https://budgeting-dashboard-lzl15dcyd-ancient-romans-projects.vercel.app"
   },
   {
 	summary: "Tactical Strategy Video Game Project",
 	date: "February 2018 - June 2021",
 	items: [
-	  "Developed a tactical strategy game level based off of Nintendo's Fire Emblem franchise",
+	  "Developed a tactical strategy game level based on Nintendo's Fire Emblem franchise",
 	  "Used Java for original version, then used Python to create a random map generator add-on later"
 	],
-	image: "/fire-emblem-map.png",
+	images: ["/fire-emblem-map.png", "/v1.0 Ex1.png", "/v1.0 Ex2.png", "/v1.0 Ex3.png"],
   },
   {
 	title: "Skills",
@@ -67,7 +67,7 @@ const accomplishments = [
 		"Member of the Virginia Tech Honors College: January 2020 – May 2023",
 		"Published Research Paper To Creativity & Cognition Conference, which received an honorable mention: April 2024"
 	],
-	image: "/honorable-mention-AandC.png",
+	images: ["/honorable-mention-AandC.png"],
 	link: "https://dl.acm.org/doi/abs/10.1145/3635636.3656195",
   }
 ];
