@@ -1,4 +1,7 @@
 import AlternatingCards from "./AlternatingCards";
+import SkillsCircle from "./SkillsCircle";
+
+const skills = ["React", "Next.js", "JavaScript/TypeScript", "Python", "Swift", "C#/.NET", "SQL Server", "Java", "Unreal Engine/C++"];
 
 const accomplishments = [
   {
@@ -55,17 +58,8 @@ const accomplishments = [
   },
   {
 	title: "Skills",
-	items: [
-	  "React",
-	  "Next.js",
-	  "JavaScript/TypeScript",
-	  "Python",
-	  "Swift",
-	  "C#/.NET",
-	  "SQL Server",
-	  "Java",
-	  "Unreal Engine/C++"
-	],
+	items: skills,
+	component: <SkillsCircle skills={skills} />
   },
   {
 	title: "Honors and Awards",

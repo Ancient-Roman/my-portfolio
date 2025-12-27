@@ -57,6 +57,11 @@ export default function AlternatingCards({accomplishments}) {
 }
 
 const ClickableImage = ({card}) => {
+  // Render custom component if provided
+  if (card?.component) {
+    return card.component;
+  }
+
   if (!card.image && !card.link)  return <></>;
 
   if (card.image && !card.link) {
